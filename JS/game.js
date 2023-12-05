@@ -3,7 +3,7 @@ class Game {
     {
         this.mainPage = document.getElementById("gameIntro")
         this.gameScreen = document.getElementById("gameScreen")
-
+        this.gameContainer = document.getElementById("gameContainer")
         this.player = null;
         this.height = 45;
         this.width = 75;
@@ -19,6 +19,7 @@ class Game {
 
         this.mainPage.style.display = "none";
         this.gameScreen.style.display = "block";
+        this.gameContainer.style.display= "block";
 
         this.gameLoop();
     }
