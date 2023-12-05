@@ -1,44 +1,58 @@
 class Game {
-    constructor()
-    {
-        this.mainPage = document.getElementById("gameIntro")
-        this.gameScreen = document.getElementById("gameScreen")
-        this.gameContainer = document.getElementById("gameContainer")
-        this.player = null;
-        this.height = 45;
-        this.width = 75;
-        this.obstacles = [];
-        this.score = 0;
-        this.lives = 3;
-        this.gameIsOver = false;
+  constructor() {
+    this.mainPage = document.getElementById("gameIntro");
+    this.gameScreen = document.getElementById("gameScreen");
+
+    this.player = null;
+    this.obstacles = [];
+    this.score = 0;
+    this.life = 3;
+    this.gameIsOver = false;
+    this.healthDOM = document.getElementById("lives");
+    this.scoreDOM = document.getElementById("score");
+  }
+
+  start() {
+    this.mainPage.style.display = "none";
+    this.gameScreen.style.display = "block";
+
+    this.gameLoop();
+  }
+
+  gameLoop() {
+    if (this.gameLoop === true) {
+      return;
     }
+    /* this.mouseAim = new MouseAim(); // Nao funciona */
+    this.update();
 
-    start(){
-        this.gameScreen.style.height = `${this.height}vw`
-        this.gameScreen.style.width = `${this.width}vw`
+    const animation = window.requestAnimationFrame(() => this.gameLoop());
+    this.spawnBoats(animation);
+  }
 
-        this.mainPage.style.display = "none";
-        this.gameScreen.style.display = "block";
-        this.gameContainer.style.display= "block";
+  update() {
+    const obstTokeep = [];
+    this.obstacles.forEach((obstacle) => {
+      obstacle.move();
+      if (obstacle.move()) {
+        setTimeout(() => {
+          this.life -= 1;
+          console.log(this.life);
+          this.healthDOM.innerText = this.life;
+          obstacle.element.remove();
+          console.log(obstacle);
+        }, 2000);
+      } else {
+        obstTokeep.push(obstacle);
+      }
+    });
+    this.obstacles = obstTokeep;
+  }
 
-        this.gameLoop();
+  spawnBoats(animation) {
+    if (animation % 200 === 0) {
+      this.obstacles.push(new Enemy(this.gameScreen));
+      console.log(this.obstacles);
     }
-
-    gameLoop(){
-        if (this.gameLoop === true)
-        {
-            return;
-        }
-
-        update();
-
-        window.requestAnimationFrame(() => this.gameLoop());
-    }
-
-    update()
-    {
-        console.log("updated")
-    }
-
-
+  }
 }
