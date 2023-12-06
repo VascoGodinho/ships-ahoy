@@ -19,7 +19,7 @@ class Enemy {
     } else {
       this.left = -150;
       this.goingRight = true;
-      this.elementlement.style.transform = "scaleX(-1)";
+      this.element.style.transform = "scaleX(-1)";
     }
     this.element.style.left = `${this.left}px`;
 
