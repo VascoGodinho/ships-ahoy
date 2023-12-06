@@ -6,26 +6,29 @@ class Enemy {
     this.top = Math.floor(Math.random() * 500 + 150);
     this.goingLeft = false;
     this.goingRight = false;
+    this.element = document.createElement("img");
+    this.element.src = "Resources/pirate-ship.png";
+
+    this.element.style.position = "absolute";
+    this.element.style.width = `${this.width}px`;
+    this.element.style.height = `${this.height}px`;
+
     if (Math.floor(Math.random() > 0.5)) {
       this.left = window.innerWidth;
       this.goingLeft = true;
     } else {
       this.left = -150;
       this.goingRight = true;
+      this.elementlement.style.transform = "scaleX(-1)";
     }
+    this.element.style.left = `${this.left}px`;
+
+    this.element.style.top = `${this.top}px`;
+
     console.log(this.left);
 
     this.game = game;
 
-    this.element = document.createElement("img");
-    this.element.src = "/Resources/pirate-ship.png";
-
-    this.element.style.position = "absolute";
-    this.element.style.width = `${this.width}px`;
-    this.element.style.height = `${this.height}px`;
-    this.element.style.left = `${this.left}px`;
-
-    this.element.style.top = `${this.top}px`;
     this.gameScreen.appendChild(this.element);
 
     this.moveSpeed = 2;

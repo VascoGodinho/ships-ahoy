@@ -147,7 +147,7 @@ table {
   background: none;
   border: none;
   margin-bottom: 20px;
-  background-image: url("/Resources/Wood_Wall.jpg");
+  background-image: url("Resources/Wood_Wall.jpg");
   width: 350px;
   height: 140px;
   background-position: center;
@@ -164,7 +164,7 @@ table {
 }
 
 #intructions {
-  background-image: url("/Resources/Wood_Wall.jpg");
+  background-image: url("Resources/Wood_Wall.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -195,7 +195,7 @@ table {
   width: auto;
   height: 100vh;
 
-  background-image: url("/Resources/background-image.png");
+  background-image: url("Resources/background-image.png");
   background-size: cover;
   background-position: center;
 
