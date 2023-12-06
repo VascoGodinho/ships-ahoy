@@ -7,7 +7,7 @@ class Enemy {
     this.goingLeft = false;
     this.goingRight = false;
     this.element = document.createElement("img");
-    this.element.src = "Resources/pirate-ship.png";
+    this.element.src = "./Resources/pirate-ship.png";
 
     this.element.style.position = "absolute";
     this.element.style.width = `${this.width}px`;
@@ -24,12 +24,11 @@ class Enemy {
     this.element.style.left = `${this.left}px`;
 
     this.element.style.top = `${this.top}px`;
+    this.gameScreen.appendChild(this.element);
 
     console.log(this.left);
 
     this.game = game;
-
-    this.gameScreen.appendChild(this.element);
 
     this.moveSpeed = 2;
 
