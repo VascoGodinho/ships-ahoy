@@ -1,10 +1,21 @@
 class Enemy {
-  constructor(gameScreen) {
+  constructor(game, gameScreen) {
     this.gameScreen = gameScreen;
     this.width = 150;
     this.height = 100;
     this.top = Math.floor(Math.random() * 500 + 150);
-    this.left = 0;
+    this.goingLeft = false;
+    this.goingRight = false;
+    if (Math.floor(Math.random() > 0.5)) {
+      this.left = window.innerWidth;
+      this.goingLeft = true;
+    } else {
+      this.left = -150;
+      this.goingRight = true;
+    }
+    console.log(this.left);
+
+    this.game = game;
 
     this.element = document.createElement("img");
     this.element.src = "/Resources/pirate-ship.png";
@@ -13,7 +24,7 @@ class Enemy {
     this.element.style.width = `${this.width}px`;
     this.element.style.height = `${this.height}px`;
     this.element.style.left = `${this.left}px`;
-    this.element.style.direction = `${180}deg`;
+
     this.element.style.top = `${this.top}px`;
     this.gameScreen.appendChild(this.element);
 
@@ -23,22 +34,49 @@ class Enemy {
     this.timeInMiddle = 0;
     this.inMiddle = false;
     console.log(window.innerWidth);
+
+    this.element.addEventListener("click", () => this.enemyClick());
   }
 
   move() {
-    if (this.left < window.innerWidth / 2) {
+    if (this.goingRight && this.left < window.innerWidth / 2 - 75) {
       this.left += this.moveSpeed;
+    } else if (this.goingLeft && this.left > window.innerWidth / 2 - 75) {
+      this.left -= this.moveSpeed;
     }
 
-    if (this.left >= window.innerWidth / 2) {
-      this.left = window.innerWidth / 2;
+    /*    if (this.left == window.innerWidth / 2 - 75) {
+      this.left = window.innerWidth / 2 - 75;
       this.updatePosition();
       return true;
-    }
+    } */
+
+    /*   if (this.left >= window.innerWidth) {
+      this.left = window.innerWidth / 2 - 75;
+      this.updatePosition();
+      return true;
+    } */
     this.updatePosition();
   }
 
   updatePosition() {
     this.element.style.left = `${this.left}px`;
+  }
+
+  enemyClick() {
+    const game = this.game;
+    const index = game.obstacles.indexOf(this);
+    if (index !== -1) {
+      this.game.obstacles.splice(index, 1);
+    }
+
+    this.element.remove();
+
+    this.increaseScore(100);
+  }
+
+  increaseScore(points) {
+    this.game.score += points;
+    this.game.scoreDOM.innerText = this.game.score;
   }
 }

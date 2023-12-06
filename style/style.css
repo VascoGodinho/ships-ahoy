@@ -222,3 +222,14 @@ table {
 #gameScreen div :last-child {
   padding-right: 40px;
 }
+
+#gameOver {
+  display: none;
+}
+
+#gameOver div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+}
