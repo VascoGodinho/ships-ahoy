@@ -16,10 +16,10 @@ class Enemy {
     if (Math.floor(Math.random() > 0.5)) {
       this.left = window.innerWidth;
       this.goingLeft = true;
+      this.element.style.transform = "scaleX(-1)";
     } else {
       this.left = -150;
       this.goingRight = true;
-      this.element.style.transform = "scaleX(-1)";
     }
     this.element.style.left = `${this.left}px`;
 
