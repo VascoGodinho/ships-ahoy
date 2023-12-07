@@ -5,7 +5,7 @@ class Game {
     this.gameOverScreen = document.getElementById("gameOver");
 
     this.obstacles = [];
-    this.birds = [];
+
     this.score = 0;
     this.life = 3;
     this.gameIsOver = false;
@@ -14,6 +14,8 @@ class Game {
 
     this.backgroundMusic = new Audio("./Resources/drunkenMusic.mp3");
     this.clickSound = new Audio("./Resources/cannonShot.wav");
+    this.backgroundMusic.volume = 0.4;
+    this.clickSound.volume = 0.65;
 
     this.gameScreen.addEventListener("click", () => {
       this.playClickSound();
@@ -48,6 +50,7 @@ class Game {
     this.spawnBoats(animation);
     if (this.life === 0) {
       this.gameOver();
+      this.backgroundMusic.pause();
     }
   }
 
@@ -98,6 +101,9 @@ class Game {
 
     if (animation % 800 === 0) {
       this.obstacles.push(new Birds(this, this.gameScreen));
+    }
+    if (animation % 1500 === 0) {
+      this.obstacles.push(new Kraken(this, this.gameScreen));
     }
   }
 

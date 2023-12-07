@@ -17,8 +17,6 @@ class Birds {
     this.element.style.top = `${this.top}px`;
     this.gameScreen.appendChild(this.element);
 
-    console.log(this.left);
-
     this.game = game;
 
     this.moveSpeed = -6.5;
