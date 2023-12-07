@@ -8,14 +8,14 @@ class Game {
 
     this.score = 0;
     this.life = 3;
-    this.gameIsOver = false;
+
     this.healthDOM = document.getElementById("lives");
     this.scoreDOM = document.getElementById("score");
 
     this.backgroundMusic = new Audio("./Resources/drunkenMusic.mp3");
     this.clickSound = new Audio("./Resources/cannonShot.wav");
-    this.backgroundMusic.volume = 0.4;
-    this.clickSound.volume = 0.65;
+    this.backgroundMusic.volume = 0.3;
+    this.clickSound.volume = 0.55;
 
     this.gameScreen.addEventListener("click", () => {
       this.playClickSound();
@@ -26,7 +26,7 @@ class Game {
     this.obstacles = [];
     this.score = 0;
     this.life = 3;
-    this.gameIsOver = false;
+
     this.healthDOM.innerText = this.life;
     this.scoreDOM.innerText = this.score;
 
