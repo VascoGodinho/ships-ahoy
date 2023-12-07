@@ -5,6 +5,7 @@ class Game {
     this.gameOverScreen = document.getElementById("gameOver");
 
     this.obstacles = [];
+    this.birds = [];
     this.score = 0;
     this.life = 3;
     this.gameIsOver = false;
@@ -82,6 +83,10 @@ class Game {
   spawnBoats(animation) {
     if (animation % 200 === 0) {
       this.obstacles.push(new Enemy(this, this.gameScreen));
+    }
+
+    if (animation % 800 === 0) {
+      this.obstacles.push(new Birds(this, this.gameScreen));
     }
   }
 }
