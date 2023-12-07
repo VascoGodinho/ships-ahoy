@@ -21,7 +21,7 @@ class Birds {
 
     this.game = game;
 
-    this.moveSpeed = -5;
+    this.moveSpeed = -6.5;
 
     this.element.addEventListener("click", () => this.enemyClick());
   }

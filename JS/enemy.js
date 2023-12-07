@@ -30,7 +30,7 @@ class Enemy {
 
     this.game = game;
 
-    this.moveSpeed = 2;
+    this.moveSpeed = 4;
 
     this.limitTime = 2000;
     this.timeInMiddle = 0;

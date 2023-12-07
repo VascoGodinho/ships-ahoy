@@ -11,6 +11,13 @@ class Game {
     this.gameIsOver = false;
     this.healthDOM = document.getElementById("lives");
     this.scoreDOM = document.getElementById("score");
+
+    this.backgroundMusic = new Audio("./Resources/drunkenMusic.mp3");
+    this.clickSound = new Audio("./Resources/cannonShot.wav");
+
+    this.gameScreen.addEventListener("click", () => {
+      this.playClickSound();
+    });
   }
 
   start() {
@@ -23,6 +30,9 @@ class Game {
 
     this.mainPage.style.display = "none";
     this.gameScreen.style.display = "block";
+
+    this.backgroundMusic.loop = true;
+    this.backgroundMusic.play();
 
     this.gameLoop();
   }
@@ -77,16 +87,21 @@ class Game {
       }
     });
     this.obstacles = obstTokeep;
+
     /* console.log(this.obstacles); */
   }
 
   spawnBoats(animation) {
-    if (animation % 200 === 0) {
+    if (animation % 55 === 0) {
       this.obstacles.push(new Enemy(this, this.gameScreen));
     }
 
     if (animation % 800 === 0) {
       this.obstacles.push(new Birds(this, this.gameScreen));
     }
+  }
+
+  playClickSound() {
+    this.clickSound.play();
   }
 }
